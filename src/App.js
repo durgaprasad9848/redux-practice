@@ -12,13 +12,13 @@ const initialState ={
 function reducer( state = initialState,action){
   switch(action.type){
     case 'INCREMENT':
-      return { count: state.count + action.num};
+      return { count: state.count + 1};
     case 'DECREASE':
-      return { count: state.count - action.num};
-    case 'INCREMENTBY2':
-      return { count: state.count +2};
-    case 'DECREMENTBY2':
-      return { count: state.count -2};
+      return { count: state.count - 1};
+    case 'IncrementBy5':
+      return { count: state.count +5};
+    case 'Decremenenby5':
+      return { count: state.count -5};
     default:
       return state;
   }
