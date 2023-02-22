@@ -1,40 +1,27 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { legacy_createStore as createStore } from 'redux';
-import Counter from './Counter';
-
-
-const initialState ={
-  count:0
-};
-
-
-function reducer( state = initialState,action){
-  switch(action.type){
-    case 'INCREMENT':
-      return { count: state.count + 1};
-    case 'DECREASE':
-      return { count: state.count - 1};
-    case 'IncrementBy5':
-      return { count: state.count +5};
-    case 'Decremenenby5':
-      return { count: state.count -5};
-    default:
-      return state;
-  }
-}
-
-
-const store = createStore( reducer);
+import React,{Fragment} from "react";
  
 
-function App() {
-  return (
-    <Provider store ={store}>
-      <Counter/>
-    </Provider>
+import Counter from "./components/Counter";
+import Auth from "./components/Auth";
+import Header from "./components/Header";
+import UserProfile from "./components/UserProfile";
+import classes from './App.css';
+import { useSelector } from "react-redux";
 
+ 
+
+const App = () => {
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  return (
+    <Fragment>  
+      <Header/>
+      {isAuthenticated && <UserProfile/>}
+      {!isAuthenticated && <Auth/>}
+      <Counter />
+ 
+    
+    </Fragment>
   );
-}
+};
 
 export default App;
